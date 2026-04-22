@@ -2,7 +2,7 @@ FROM alpine:3.19
 
 ENV XRAY_VERSION=1.8.6
 
-RUN apk add --no-cache curl ca-certificates tzdata \
+RUN apk add --no-cache curl ca-certificates tzdata wget \
     && curl -L -o /tmp/xray.zip "https://github.com/XTLS/Xray-core/releases/download/v${XRAY_VERSION}/Xray-linux-64.zip" \
     && unzip -o /tmp/xray.zip -d /usr/local/bin \
     && rm /tmp/xray.zip
