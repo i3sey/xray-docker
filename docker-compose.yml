@@ -1,0 +1,16 @@
+services:
+  xray-core:
+    build: .
+    container_name: xray-core
+    restart: unless-stopped
+    ports:
+      - "3002:3002"
+    environment:
+      PROXY_TARGET_HOST: 192.168.1.100
+    env_file:
+      - .env
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://localhost:3002"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
