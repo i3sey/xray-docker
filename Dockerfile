@@ -1,6 +1,6 @@
 FROM teddysun/xray:latest
 
-RUN apt-get update && apt-get install -y gettext && rm -rf /var/lib/apt/lists/*
+RUN apk add --no-cache gettext
 
 COPY config.json /etc/xray/config.json
 
