@@ -1,5 +1,5 @@
 FROM teddysun/xray:latest
 
-COPY config.json /etc/xray/config.json
+RUN apk add --no-cache socat
 
-CMD ["sh", "-c", "sed -i 's/\\${PROXY_TARGET_HOST}/$PROXY_TARGET_HOST/g' /etc/xray/config.json && xray run -c /etc/xray/config.json"]
+CMD ["socat", "TCP-LISTEN:3002,fork,reuseaddr", "TCP:${PROXY_TARGET_HOST}:3001"]
